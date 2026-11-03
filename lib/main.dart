@@ -417,13 +417,15 @@ class _PickScreenState extends State<PickScreen> {
         top: false,
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 760),
+            constraints: const BoxConstraints(maxWidth: 1240),
             child: CustomScrollView(
               controller: _scroll,
               slivers: [
                 if (v != null)
                   SliverToBoxAdapter(
-                    child: _VerdictView(verdict: v, onZoom: _inspectCard),
+                    child: _Readable(
+                      child: _VerdictView(verdict: v, onZoom: _inspectCard),
+                    ),
                   ),
                 SliverPadding(
                   padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
@@ -441,11 +443,13 @@ class _PickScreenState extends State<PickScreen> {
                 _PackGrid(pack: _pack, verdict: v, onTap: _inspect),
                 if (v != null)
                   SliverToBoxAdapter(
-                    child: _Ranking(
-                      pack: _pack.map((p) => p.card).toList(),
-                      verdict: v,
-                      note: _data!.info.tierNote,
-                      onZoom: _inspectCard,
+                    child: _Readable(
+                      child: _Ranking(
+                        pack: _pack.map((p) => p.card).toList(),
+                        verdict: v,
+                        note: _data!.info.tierNote,
+                        onZoom: _inspectCard,
+                      ),
                     ),
                   ),
                 const SliverToBoxAdapter(
@@ -707,7 +711,10 @@ class _PackGrid extends StatelessWidget {
     return SliverLayoutBuilder(
       builder: (context, c) {
         final w = c.crossAxisExtent;
-        final cols = w < 420 ? 3 : (w < 640 ? 4 : 5);
+        // Mobile : 3-4 colonnes. Ordinateur : des cartes d'environ 200 px de large, lisibles sans zoom.
+        final cols = w < 420
+            ? 3
+            : (w < 640 ? 4 : (w / 200).floor().clamp(5, 7));
         return SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           sliver: SliverGrid.builder(
@@ -1145,4 +1152,17 @@ class _Credits extends StatelessWidget {
       ],
     );
   }
+}
+
+/// Garde le texte (verdict, classement) à une largeur de lecture confortable sur grand écran.
+class _Readable extends StatelessWidget {
+  final Widget child;
+  const _Readable({required this.child});
+  @override
+  Widget build(BuildContext context) => Center(
+    child: ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 760),
+      child: child,
+    ),
+  );
 }
