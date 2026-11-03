@@ -21,7 +21,7 @@ WEB_PORT ?= 8765
 
 .DEFAULT_GOAL := help
 
-.PHONY: help data images \
+.PHONY: help data images keystore \
         android-run android-apk android-install android-bundle \
         web-run web-build web-serve \
         clean deps fmt analyze test check
@@ -41,6 +41,7 @@ help:
 	@echo "  make check               # deps + fmt + analyze + test"
 	@echo ""
 	@echo "Android:"
+	@echo "  make keystore            # Create the upload keystore + android/key.properties (asks for a password)"
 	@echo "  make android-run         # [DEVICE=<id>]"
 	@echo "  make android-apk         # release APK"
 	@echo "  make android-install     # release APK installed on the device [DEVICE=<id>]"
@@ -62,6 +63,9 @@ images:
 	$(PYTHON) tool/build_data.py --images
 
 # --- 2) Android ---
+keystore:
+	./tool/create_keystore.sh
+
 # No product flavors are configured in android/app/build.gradle for this project.
 
 android-run:
