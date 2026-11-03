@@ -24,6 +24,7 @@ flutter:
     - assets/logo.png
     - assets/logo_mark.png
     - assets/dracailles.png
+    - assets/google_fonts/
     - assets/sets/
     - assets/sets/usurp/
     - assets/sets/usurp/cards/

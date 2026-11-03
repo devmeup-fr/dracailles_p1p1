@@ -1,0 +1,8 @@
+<fr-FR>
+Première version de P1P1 Dracailles !
+• Ouvre des boosters Usurp the Shadow Throne tirés selon la vraie répartition du set.
+• Choisis ta carte : verdict immédiat, comparaison avec le meilleur pick et explication.
+• Classement du pack de S à D et conseils de draft.
+• Suivi de tes bons picks et de ta série.
+D'autres sets arriveront bientôt.
+</fr-FR>

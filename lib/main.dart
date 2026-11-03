@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:p1p1_dracailles/theme/colors.dart';
 import 'package:p1p1_dracailles/theme/fantasy_theme.dart';
 import 'package:p1p1_dracailles/theme/themes.dart';
@@ -11,6 +12,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // Polices Cinzel et Roboto embarquées (assets/google_fonts) : l'app ne télécharge rien.
+  GoogleFonts.config.allowRuntimeFetching = false;
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       systemNavigationBarColor: FantasyPalette.obsidian,
