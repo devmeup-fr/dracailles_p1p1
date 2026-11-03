@@ -1,0 +1,29 @@
+name: p1p1_dracailles
+description: "Entraînement au premier pick (P1P1) en draft Flesh and Blood."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^8.2.1
+  shared_preferences: ^2.5.6
+  url_launcher: ^6.3.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo.png
+    - assets/logo_mark.png
+    - assets/dracailles.png
+    - assets/sets/
+    - assets/sets/usurp/
+    - assets/sets/usurp/cards/
